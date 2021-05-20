@@ -45,6 +45,7 @@ import com.otaliastudios.transcoder.source.ClipDataSource;
 import com.otaliastudios.transcoder.source.FilePathDataSource;
 import com.otaliastudios.transcoder.source.UriDataSource;
 import com.otaliastudios.transcoder.strategy.DefaultVideoStrategy;
+import com.otaliastudios.transcoder.strategy.PassThroughTrackStrategy;
 import com.otaliastudios.transcoder.strategy.TrackStrategy;
 import com.otaliastudios.transcoder.strategy.size.AspectRatioResizer;
 import com.otaliastudios.transcoder.strategy.size.FractionResizer;
@@ -304,10 +305,7 @@ public class TrimContainer extends FrameLayout {
                 resizer = new AspectRatioResizer(1f);
             }
         }
-        TrackStrategy videoStrategy = new DefaultVideoStrategy.Builder()
-                .addResizer(resizer)
-                .addResizer(new FractionResizer(1f))
-                .build();
+        TrackStrategy videoStrategy = new PassThroughTrackStrategy();
 
         DataSink sink = new DefaultDataSink(transcodeOutputFile.getAbsolutePath());
         TranscoderOptions.Builder builder = Transcoder.into(sink);

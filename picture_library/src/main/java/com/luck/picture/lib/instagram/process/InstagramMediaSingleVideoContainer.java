@@ -160,8 +160,9 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         }));
 
         if (config.instagramSelectionConfig.haveCover()) {
-            mList.add(new PageCover(config, media));
-            ((PageCover) mList.get(1)).setOnSeekListener(new CoverContainer.onSeekListener() {
+            PageCover pageCover = new PageCover(config, media);
+            mList.add(pageCover);
+            pageCover.setOnSeekListener(new CoverContainer.onSeekListener() {
                 @Override
                 public void onSeek(float percent) {
                     if (!isFrist) {
